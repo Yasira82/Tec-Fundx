@@ -29,8 +29,8 @@ export interface PaymentResult {
   message?:   string;
 }
 
-// TODO(new app): set your app slug.
-const APP_SOURCE = 'app';
+// FundX slug — payment-service resolves PI_API_KEY_FUNDX.
+const APP_SOURCE = 'fundx';
 
 const HUB_URL = process.env.NEXT_PUBLIC_HUB_URL ?? 'https://hub.tecosystem.app';
 

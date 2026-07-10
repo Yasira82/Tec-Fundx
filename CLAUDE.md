@@ -1,15 +1,62 @@
-# TEC Domain App Template — Claude Code Instructions
+# TEC FundX — Claude Code Instructions
 
-## What This Repo Is
+> ⚡ **SESSION START:** اقرأ `knowledge-base/C-02___CURRENT_STATE_.md` + **app charter
+> `knowledge-base/C-113___FUNDX_INSTITUTIONAL_CHARTER.md`** من `yasira82/tec-knowledge-base` (branch: `main`).
 
-The **golden starter template** for a new app in the TEC Federated Platform.
-It ships a correct, Portal-ready skeleton: Hub SSO, dual-mode Pi payments,
-CSRF, legal pages, and CI policy guards. Clone it, run the "New app setup"
-checklist below, and you have a compliant app — no missing pieces.
+## What This App Is
 
-**Reference of record:** `yasira82/tec-knowledge-base` — especially
-`C-12_Dual_Mode_Payment.md` (payment + anti-regression) and
-`audits/PORTAL_SUBMISSION_RUNBOOK_*.md`.
+**System of Production — Capital Coordination Infrastructure** (C-113). FundX
+enables **governed collective capital formation** on Pi: users pool Pi, co-invest
+in shared goals, and earn returns within a legally + technically sound framework.
+
+**FundX is the highest financial-risk app in TEC** (C-113 §6) — a breach = multi-user
+loss. Treat every change with that gravity.
+
+Built from `tec-template-base` (Next.js 15 frontend).
+
+**Current Phase: FundX V0 — App Scaffold & Portal Readiness.** Identity / domain /
+slug / legal + themed home + **FundX Pro payment surface** (the Pi Portal "Process a
+Transaction" gate) + a **read-only Pool Charters catalog** (definitions only). Real
+pool contributions are **NOT built** — they are hard-gated (below). Not yet deployed.
+
+---
+
+## Pi App Identity
+
+| Field | Value |
+|-------|-------|
+| **App** | TEC FundX |
+| **Domain** | `https://fundx.tecosystem.app` |
+| **Pi App ID** | ⏳ TBD — register at Pi Developer Portal · then Vercel `NEXT_PUBLIC_PI_APP_ID` |
+| **APP_SOURCE slug** | `fundx` (payment-service resolves `PI_API_KEY_FUNDX`) |
+| **PI_SANDBOX** | `false` (Mainnet) |
+
+---
+
+## FundX-Specific Rules (C-113) — READ BEFORE ANY POOL CODE
+
+### 🔴 Hard gates — DO NOT build pool mechanics without ALL of these (C-113 §11 P0)
+1. **Legal consultation FIRST** — no line of pool-contribution code before a documented legal review of Pi-denominated investment pools (jurisdiction + Pi DeFi rules).
+2. **KYC maturity** — `tec-kyc-service` at ≥90% success; **KYC is mandatory** before any participation (no anonymous pools).
+3. **SYSTEM pool governance** (C-110) — SYSTEM defines permitted pool types + return models + charter-approval workflow. FundX is governed BY SYSTEM, not self-governing.
+
+Until all three exist, FundX ships **read-only** (browse charters) + FundX Pro subscription only. **No contribute button, no capital movement.**
+
+### The ownership boundary
+FundX **OWNS**: pool-creation UI, contribution/withdrawal *flows* (UI), a portfolio *view*, pool-charter *display*. FundX does **NOT OWN**:
+- **Pool capital custody** → `tec-payment-service` holds all Pi balances (DECIMAL(20,8)). FundX never holds capital.
+- **Distribution computation** → server-side only. **FundX UI displays, never computes** returns.
+- **Pool governance** → SYSTEM (C-110). **Legal compliance** → external counsel. **Collateral** → tec-asset-service.
+
+### Invariants (extend C-47)
+- Pool balance NEVER goes negative. No distribution without confirmed returns.
+- Immutable pool charter: once a pool is live, terms cannot change.
+- Every pool action has full ActorContext + audit trail. Investor must explicitly acknowledge the charter (with risks) before contributing.
+- **Educational pools only (Phase 1). No guaranteed-return promises. All risks disclosed.**
+
+**Reference of record:** `yasira82/tec-knowledge-base` —
+`C-113___FUNDX_INSTITUTIONAL_CHARTER.md` (charter) + `C-12_Dual_Mode_Payment.md`
+(payment anti-regression) + `C-123` (session/cookies) + `C-71` (financial integrity).
 
 ---
 
@@ -43,11 +90,14 @@ if (isHubNavigation() || !(window as any).Pi || !piReady) {
 }
 // Mode 2: standalone — createPaymentRecord() then createU2APayment() (src/lib/pi-payment.ts)
 ```
+> The hub-entry signal is `__tec_hub_entry` (sessionStorage) **OR** referrer — the
+> landing page (C-123 LAW 2) made referrer-alone unreliable (C-12 §3). Do not remove it.
 
 ### ADR-009 — Unified payment contract
 `amount` is a **number**; gateway path is **`/api/payment/*`** (singular); the only
 inter-service header is **`x-internal-key`** + `INTERNAL_SECRET`. Don't re-declare
-payment Zod locally — shapes live in `@yasser172/tec-sdk`.
+payment Zod locally — shapes live in `@yasser172/tec-sdk`. Approve under
+`PI_API_KEY_FUNDX` (never the default Hub key — the Analytics approve→502 lesson, C-12 §11).
 
 ### Two-SDK boundary
 ```
@@ -61,67 +111,57 @@ Identity is derived from the `tec_user` cookie server-side — **never from the 
 
 ---
 
-## What's included
+## Setup status + Roadmap (C-113 §10)
 
 ```
-middleware.ts                              CSRF (double-submit OR Origin) + page guard
-src/app/api/auth/sso-callback/route.ts     Hub SSO landing (open-redirect-safe)
-src/app/api/auth/refresh/route.ts          token refresh
-src/app/api/bff/payment/{create,approve,complete,resolve-incomplete}/route.ts
-src/app/api/bff/items/route.ts             example domain route (copy this pattern)
-src/app/api/health/route.ts                health endpoint (C-92/C-96) — fail-safe, public, never 500s
-src/lib/pi-payment.ts                      createPaymentRecord + createU2APayment
-src/lib/pi/PiRuntime.ts                    PAL — single choke-point for window.Pi.* (R1)
-src/lib/pi/PiCircuitBreaker.ts             CLOSED→OPEN→HALF_OPEN (3 fails → 60s)
-src/lib/flags.ts                           feature flags (NEXT_PUBLIC_FLAG_*) + useFlag
-src/lib/observability/logger.ts            structured JSON logger (log.info/warn/error) — no silent failures (C-96)
-src/lib/observability/reportError.ts       Sentry-ready error reporter (single swap-point)
-src/app/privacy/page.tsx · terms/page.tsx  Pi Portal legal pages
-src/styles/tec-design-tokens.css           import in app/layout.tsx
-.github/workflows/ci.yml                   payment-policy + CSRF guard + lint/typecheck/test/build
+FundX V0 — App Scaffold & Portal Readiness (customized from template):
+  ✅ package.json name = tec-fundx · APP_SOURCE = 'fundx'
+  ✅ sso-callback ALLOWED_AUDIENCES → fundx.tecosystem.app + tec-fundx.vercel.app
+  ✅ privacy + terms → TEC FundX / fundx.tecosystem.app
+  ✅ NEW-A: no NEXT_PUBLIC_API_GATEWAY_URL / Railway host in the client bundle
+  ✅ layout Pi init is hub-entry-aware (C-12 §3 / ADR-007 foreign-session skip)
+  ✅ /app themed as the Capital-Coordination home + FundX Pro (real Pi U2A payment)
+  ✅ read-only Pool Charters catalog (definitions only — NO contribute, NO capital movement)
+
+Next (before live):
+  □ Register Pi App ID (Pi Developer Portal) → set Vercel NEXT_PUBLIC_PI_APP_ID +
+    API_GATEWAY_URL · INTERNAL_SECRET · SSO_SECRET · PI_SANDBOX=false.
+  □ payment-service: set PI_API_KEY_FUNDX on Railway (approve→502 otherwise, C-12 §11).
+  □ Hub SSO: add fundx.tecosystem.app + tec-fundx.vercel.app to Hub /api/auth/sso
+    ALLOWED_TARGETS + Hub domain registry (both in this change).
+  □ Deploy (Vercel) + runtime-verify login (C-123) + a real FundX Pro payment
+    Mode 1 (Hub) AND Mode 2 (standalone) — completes the Portal "Process a Transaction" gate.
+
+FundX V1+ (POST hard-gates — legal + KYC + SYSTEM, C-113 §11): educational pools only,
+  admin-approved charters, contributions to a payment-service escrow, server-side
+  pro-rata distribution. NONE of this ships until the three P0 gates are documented-done.
 ```
 
-**v2 (production-ready by default):** every new app ships
-- `/api/health` — uniform C-92 signal (platform health runtime + observability scrape + SLO/runtime-evidence loop);
-- structured `log` + `reportError` — use `log.error`/`reportError` in catch blocks (a silent error handler is an invisible failure, C-96; `reportError` is the one place to wire Sentry per app);
-- `PiRuntime` (PAL) + `PiCircuitBreaker` — never call `window.Pi.*` directly; go through PiRuntime so an SDK change is a one-file fix (R1) and flapping is contained;
-- `flags.ts` — feature flags from day one (`NEXT_PUBLIC_FLAG_<NAME>`);
-- coverage gate — `npm run test:coverage` (add devDep `@vitest/coverage-v8`; 60% floor, raise as the app grows).
-
----
-
-## New app setup checklist
-
-```
-□ package.json: set "name"
-□ middleware.ts: adjust PROTECTED_ROUTES
-□ sso-callback/route.ts: set ALLOWED_AUDIENCES + DEFAULT_REDIRECT to your domain
-□ src/lib/pi-payment.ts + payment/create: set APP_SOURCE slug
-□ privacy/page.tsx + terms/page.tsx: set APP / DOMAIN / governing law / contacts
-□ Add ADR-007 isHubNavigation() guard to every buy handler
-□ .env: API_GATEWAY_URL · INTERNAL_SECRET · SSO_SECRET · NEXT_PUBLIC_PI_APP_ID · PI_SANDBOX=false (prod)
-□ Pi Developer Portal: register domain + App ID; set /privacy + /terms URLs
-□ Verify a real Pi payment Mode 1 (via Hub) AND Mode 2 (standalone)
-```
+> FundX monetization (C-113 §7) is pool-management + success fees + premium pool
+> creation. The payment scaffold + `isHubNavigation()` guard are kept for the Portal
+> gate; any direct buy MUST keep the ADR-007 guard and needs `PI_API_KEY_FUNDX`.
 
 ---
 
 ## What NOT To Do
 
+- Do NOT build pool contribution/withdrawal/distribution mechanics before the 3 P0 gates (legal + KYC + SYSTEM) — C-113 §11
+- Do NOT hold pooled capital in FundX or compute distributions client-side — payment-service owns capital + computes (C-113 §6)
+- Do NOT allow anonymous participation — KYC is mandatory
+- Do NOT promise guaranteed returns; every pool charter must disclose risks
 - Do NOT validate CSRF in a route handler — middleware only (CI blocks it)
 - Do NOT send `amount` as a string, or use `/payments` / `x-service-secret`
 - Do NOT skip the ADR-007 `isHubNavigation()` guard before `window.Pi`
 - Do NOT store tokens in localStorage; do NOT derive identity from the body
 - Do NOT add `NEXT_PUBLIC_*` for internal service URLs or `INTERNAL_SECRET`
-- Do NOT use an open `redirect` param without the same-origin guard (open redirect)
 
 ---
 
 ## Commit Convention
 
 ```
-feat(scope):  new feature      fix(payment): payment flow fix (test carefully)
-fix(scope):   bug fix          chore(scope): build/config
+feat(fundx):  new capital feature   fix(payment): payment flow fix (test carefully)
+fix(fundx):   bug fix               chore(scope):  build/config
 ```
 
 ---
