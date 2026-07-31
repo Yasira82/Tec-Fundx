@@ -17,7 +17,7 @@ Built from `tec-template-base` (Next.js 15 frontend).
 **Current Phase: FundX V0 — App Scaffold & Portal Readiness.** Identity / domain /
 slug / legal + themed home + **FundX Pro payment surface** (the Pi Portal "Process a
 Transaction" gate) + a **read-only Pool Charters catalog** (definitions only). Real
-pool contributions are **NOT built** — they are hard-gated (below). Not yet deployed.
+pool contributions are **NOT built** — they are hard-gated (below). Deployed (Mainnet) · Pi App ID registered · env set · payment live · referral growth loop wired (C-133).
 
 ---
 
@@ -27,7 +27,7 @@ pool contributions are **NOT built** — they are hard-gated (below). Not yet de
 |-------|-------|
 | **App** | TEC FundX |
 | **Domain** | `https://fundx.tecosystem.app` |
-| **Pi App ID** | ⏳ TBD — register at Pi Developer Portal · then Vercel `NEXT_PUBLIC_PI_APP_ID` |
+| **Pi App ID** | ✅ Registered (Mainnet) · Vercel `NEXT_PUBLIC_PI_APP_ID` |
 | **APP_SOURCE slug** | `fundx` (payment-service resolves `PI_API_KEY_FUNDX`) |
 | **PI_SANDBOX** | `false` (Mainnet) |
 

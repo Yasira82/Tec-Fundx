@@ -7,6 +7,7 @@
 // legal review + KYC + SYSTEM approval (C-113 §6/§11). FundX displays; it never
 // holds capital or computes distributions (payment-service owns that).
 import Link from 'next/link';
+import { InviteCard } from '@/components/referral/InviteCard';
 import { usePiAuth } from '@yasser172/tec-auth';
 import { TEC_COLORS } from '@yasser172/tec-ui';
 import { FundXPro } from './components/FundXPro';
@@ -86,6 +87,7 @@ export default function FundXHome() {
           (external counsel) — C-113 §4. Pool balances live in tec-payment-service at
           DECIMAL(20,8) and are computed server-side only.
         </p>
+        <InviteCard />
       </div>
     </main>
   );
