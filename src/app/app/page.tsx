@@ -38,7 +38,7 @@ export default function FundXHome() {
           </h1>
           <p style={{ fontSize: 14, color: TEC_COLORS.subtext, margin: '6px 0 0', lineHeight: 1.6 }}>
             Governed collective capital on Pi — pool resources, co-invest in shared goals,
-            and earn within a compliant framework (C-113).
+            and earn within a compliant framework.
           </p>
         </header>
 
@@ -48,7 +48,7 @@ export default function FundXHome() {
             ⚖️ <strong>Preview.</strong> Contributions are not open yet. Pools below are
             educational definitions — they open only after legal review, KYC, and SYSTEM
             approval. No guaranteed returns; capital would be at risk. FundX never holds
-            your capital (C-113 §6).
+            your capital.
           </div>
         </div>
 

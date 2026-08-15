@@ -171,7 +171,7 @@ export function FundXPro() {
         Early access for pool creators — priority charter review, richer pool
         analytics, and a verified-pool badge when contributions open. A
         subscription, not an investment: FundX holds no capital and promises no
-        returns (C-113 §6).
+        returns.
       </div>
 
       <button
