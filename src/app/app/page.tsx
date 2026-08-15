@@ -32,7 +32,7 @@ export default function FundXHome() {
     <main style={{ minHeight: '100vh', background: TEC_COLORS.bg, color: TEC_COLORS.text, padding: '32px 22px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       <div style={{ maxWidth: 760, margin: '0 auto' }}>
         <header>
-          <div style={{ fontSize: 12, letterSpacing: 1, color: TEC_COLORS.subtext, textTransform: 'uppercase' }}>TEC FundX · Capital Coordination</div>
+          <div style={{ fontSize: 12, letterSpacing: 1, color: TEC_COLORS.subtext, textTransform: 'uppercase' }}>TEC FundX · Collective Investing</div>
           <h1 style={{ fontSize: 26, fontWeight: 900, color: TEC_COLORS.gold, margin: '6px 0 0' }}>
             {isLoading ? 'Welcome' : `Welcome, ${name}`}
           </h1>
@@ -82,10 +82,9 @@ export default function FundXHome() {
         </section>
 
         <p style={{ fontSize: 11, color: TEC_COLORS.subtext, margin: '24px 0 0', lineHeight: 1.5 }}>
-          FundX owns the pool UI and charter display; it never owns capital custody,
-          distribution computation, pool governance (SYSTEM), or legal compliance
-          (external counsel) — C-113 §4. Pool balances live in tec-payment-service at
-          DECIMAL(20,8) and are computed server-side only.
+          FundX lets people pool Pi and co-invest in shared goals within a compliant
+          framework. Your funds are always held securely and only move with your
+          approval — FundX never holds your capital directly.
         </p>
         <InviteCard />
       </div>

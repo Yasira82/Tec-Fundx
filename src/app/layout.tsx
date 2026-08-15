@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import '@/styles/tec-design-tokens.css';
 
 export const metadata: Metadata = {
-  title:       'TEC FundX — Capital Coordination',
+  title:       'TEC FundX — Collective Investing',
   description: 'TEC FundX — governed collective capital formation on Pi. Pool, co-invest, and earn within a compliant framework.',
 };
 

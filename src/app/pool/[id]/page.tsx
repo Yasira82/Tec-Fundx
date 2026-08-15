@@ -92,7 +92,7 @@ export default async function PoolPage(
         <div style={{ marginTop: 24, background: `${TEC_COLORS.gold}11`, border: `1px solid ${TEC_COLORS.gold}33`, borderRadius: 12, padding: '12px 14px', fontSize: 12, color: TEC_COLORS.text, lineHeight: 1.55 }}>
           Contributions are <strong>not open</strong>. When (and if) this pool opens, it will
           require completed KYC and an explicit charter acknowledgement, and all capital
-          will be held and settled by tec-payment-service — never by FundX.
+          will be held securely and only move with your approval.
         </div>
       </div>
     </main>
