@@ -9,13 +9,16 @@
 import Link from 'next/link';
 import { InviteCard } from '@/components/referral/InviteCard';
 import { usePiAuth } from '@yasser172/tec-auth';
+import { useMe } from '@/lib-client/hooks/useMe';
 import { TEC_COLORS } from '@yasser172/tec-ui';
 import { FundXPro } from './components/FundXPro';
 import { POOLS } from '@/lib/fundx/pools';
 
 export default function FundXHome() {
   const { user, isLoading } = usePiAuth();
-  const name = user?.piUsername ? `@${user.piUsername}` : '';
+  const me = useMe(); // server-resolved Pi username (Pi Browser hides tec_user from client JS — C-123 §3)
+  const piName = me.username ?? user?.piUsername ?? null;
+  const name = piName ? `@${piName}` : '';
 
   const poolCard: React.CSSProperties = {
     display: 'block', textDecoration: 'none',
