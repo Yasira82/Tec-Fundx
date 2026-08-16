@@ -15,7 +15,7 @@ import { POOLS } from '@/lib/fundx/pools';
 
 export default function FundXHome() {
   const { user, isLoading } = usePiAuth();
-  const name = user?.piUsername ? `@${user.piUsername}` : 'there';
+  const name = user?.piUsername ? `@${user.piUsername}` : '';
 
   const poolCard: React.CSSProperties = {
     display: 'block', textDecoration: 'none',
@@ -34,7 +34,7 @@ export default function FundXHome() {
         <header>
           <div style={{ fontSize: 12, letterSpacing: 1, color: TEC_COLORS.subtext, textTransform: 'uppercase' }}>TEC FundX · Collective Investing</div>
           <h1 style={{ fontSize: 26, fontWeight: 900, color: TEC_COLORS.gold, margin: '6px 0 0' }}>
-            {isLoading ? 'Welcome' : `Welcome, ${name}`}
+            {isLoading || !name ? 'Welcome' : `Welcome, ${name}`}
           </h1>
           <p style={{ fontSize: 14, color: TEC_COLORS.subtext, margin: '6px 0 0', lineHeight: 1.6 }}>
             Governed collective capital on Pi — pool resources, co-invest in shared goals,
