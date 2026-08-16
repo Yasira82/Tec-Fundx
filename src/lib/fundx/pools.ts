@@ -20,7 +20,7 @@ export interface PoolCharter {
   minContribution: string; // display string
   duration:      string;
   returnModel:   ReturnModel;
-  risks:         string[];  // MUST be disclosed (C-113 §5)
+  risks: string[]; // MUST be disclosed
 }
 
 // Disclosure that applies to EVERY pool — shown on every charter (C-113 §5/§6).

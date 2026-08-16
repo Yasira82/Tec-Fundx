@@ -22,4 +22,22 @@ export const en = {
     appsTitle: 'TEC Ecosystem',
     appsCount: '24 Apps',
   },
+  fundx: {
+    brand:       'TEC FundX · Collective Investing',
+    welcome:     'Welcome',
+    welcomeName: 'Welcome, {name}',
+    subtitle:    'Governed collective capital on Pi — pool resources, co-invest in shared goals, and earn within a compliant framework.',
+    nav: { home: 'Home', pools: 'Pools', pro: 'Pro', settings: 'Settings' },
+    poolCharters: 'Pool Charters',
+    poolsPreview: 'preview · not open',
+    poolsDesc:    'Educational pool definitions — target, minimum, duration, return model, and disclosed risks. Tap a pool to read its charter. No contribution is possible in this preview.',
+    footer:      'FundX lets people pool Pi and co-invest in shared goals within a compliant framework. Your funds are always held securely and only move with your approval — FundX never holds your capital directly.',
+    settings: {
+      profile: 'Profile', planFree: 'Free', planPro: 'Pro',
+      connectedPi: 'Connected to Pi', notSignedIn: 'Not signed in', member: 'TEC Member',
+      appearance: 'Appearance', language: 'Language', languageDesc: 'Display language',
+      about: 'About', version: 'Version', domain: 'Domain', ecosystem: 'Ecosystem',
+      builtOn: 'Built on', builtOnPi: 'Pi Network', logout: 'Logout',
+    },
+  },
 };

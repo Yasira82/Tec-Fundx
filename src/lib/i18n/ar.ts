@@ -22,4 +22,22 @@ export const ar = {
     appsTitle: 'منظومة TEC',
     appsCount: '24 تطبيق',
   },
+  fundx: {
+    brand:       'TEC FundX · الاستثمار الجماعي',
+    welcome:     'أهلاً',
+    welcomeName: 'أهلاً، {name}',
+    subtitle:    'رأس مال جماعي مُنظَّم على Pi — اجمع الموارد، وشارك في أهداف مشتركة، واكسب ضمن إطار متوافق.',
+    nav: { home: 'الرئيسية', pools: 'الصناديق', pro: 'Pro', settings: 'الإعدادات' },
+    poolCharters: 'مواثيق الصناديق',
+    poolsPreview: 'معاينة · غير مفتوح',
+    poolsDesc:    'تعريفات صناديق تعليمية — الهدف، الحد الأدنى، المدة، نموذج العائد، والمخاطر المُفصح عنها. اضغط على صندوق لقراءة ميثاقه. لا مساهمة ممكنة في هذه المعاينة.',
+    footer:      'FundX بيخلّي الناس تجمع Pi وتشارك في أهداف مشتركة ضمن إطار متوافق. أموالك دايماً محفوظة بأمان ومابتتحركش إلا بموافقتك — FundX مابيحملش رأس مالك مباشرة.',
+    settings: {
+      profile: 'الملف الشخصي', planFree: 'مجاني', planPro: 'Pro',
+      connectedPi: 'متصل بـ Pi', notSignedIn: 'غير مسجّل الدخول', member: 'عضو TEC',
+      appearance: 'المظهر', language: 'اللغة', languageDesc: 'لغة العرض',
+      about: 'حول', version: 'الإصدار', domain: 'النطاق', ecosystem: 'المنظومة',
+      builtOn: 'مبني على', builtOnPi: 'شبكة Pi', logout: 'تسجيل الخروج',
+    },
+  },
 };
