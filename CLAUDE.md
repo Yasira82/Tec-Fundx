@@ -123,13 +123,13 @@ FundX V0 — App Scaffold & Portal Readiness (customized from template):
   ✅ /app themed as the Capital-Coordination home + FundX Pro (real Pi U2A payment)
   ✅ read-only Pool Charters catalog (definitions only — NO contribute, NO capital movement)
 
-Next (before live):
-  □ Register Pi App ID (Pi Developer Portal) → set Vercel NEXT_PUBLIC_PI_APP_ID +
+Live on Mainnet — all complete (SSoT: architecture/app-fleet.yaml):
+  ✅ Register Pi App ID (Pi Developer Portal) → set Vercel NEXT_PUBLIC_PI_APP_ID +
     API_GATEWAY_URL · INTERNAL_SECRET · SSO_SECRET · PI_SANDBOX=false.
-  □ payment-service: set PI_API_KEY_FUNDX on Railway (approve→502 otherwise, C-12 §11).
-  □ Hub SSO: add fundx.tecosystem.app + tec-fundx.vercel.app to Hub /api/auth/sso
+  ✅ payment-service: set PI_API_KEY_FUNDX on Railway (approve→502 otherwise, C-12 §11).
+  ✅ Hub SSO: add fundx.tecosystem.app + tec-fundx.vercel.app to Hub /api/auth/sso
     ALLOWED_TARGETS + Hub domain registry (both in this change).
-  □ Deploy (Vercel) + runtime-verify login (C-123) + a real FundX Pro payment
+  ✅ Deploy (Vercel) + runtime-verify login (C-123) + a real FundX Pro payment
     Mode 1 (Hub) AND Mode 2 (standalone) — completes the Portal "Process a Transaction" gate.
 
 FundX V1+ (POST hard-gates — legal + KYC + SYSTEM, C-113 §11): educational pools only,
