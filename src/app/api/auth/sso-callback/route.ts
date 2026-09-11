@@ -12,6 +12,7 @@ import { HUB_HOSTS }                 from '@/lib/pi-network';
 const ALLOWED_AUDIENCES = [
   'https://fundx.tecosystem.app',
   'https://tec-fundx.vercel.app',
+  'https://fundx-test.tecosystem.app',
 ];
 const DEFAULT_REDIRECT = '/app';
 
