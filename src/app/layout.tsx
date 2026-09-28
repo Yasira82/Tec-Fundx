@@ -10,7 +10,8 @@ import { QuestReturn } from '@/components/pioneer/QuestReturn';
 
 export const metadata: Metadata = {
   title:       'TEC FundX — Collective Investing',
-  description: 'TEC FundX — governed collective capital formation on Pi. Pool, co-invest, and earn within a compliant framework.',
+  // C1: no promise of earnings or compliance — legal review has not happened (C-113 §11).
+  description: 'TEC FundX — an educational preview of governed collective pools on Pi. Contributions are not open; no return is promised.',
 };
 
 export default function RootLayout({
