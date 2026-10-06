@@ -1,5 +1,7 @@
 'use client';
 
+import { SignInGate } from '@/components/pi/SignInGate';
+
 // TEC FundX — Capital Coordination Infrastructure (C-113). FundX enables governed
 // collective capital formation on Pi. V0 shows the FundX Pro subscription + a
 // READ-ONLY catalog of educational pool charters (definitions only). It moves no
@@ -32,7 +34,7 @@ function ComplianceBanner() {
   );
 }
 
-export default function FundXHome() {
+function FundXHome() {
   const { user, isLoading } = usePiAuth();
   const me = useMe(); // server-resolved Pi username (Pi Browser hides tec_user from client JS — C-123 §3)
   const { t } = useTranslation();
@@ -114,4 +116,11 @@ export default function FundXHome() {
       <BottomNav active={tab} onSelect={setTab} />
     </main>
   );
+}
+
+// The door: a sign-in button before any screen when there is no session
+// (SignInGate — C-123 §10; owner, 2026-10-06). A visit from the Hub arrives
+// signed in (§12) and goes straight through.
+export default function FundXHomeGated() {
+  return <SignInGate><FundXHome /></SignInGate>;
 }
