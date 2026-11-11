@@ -4,6 +4,7 @@ import { RefApply } from '@/components/referral/RefApply';
 import { LocaleProvider } from '@/lib/i18n';
 import { HUB_HOSTS } from '@/lib/pi-network';
 import type { Metadata } from 'next';
+import { APP_META } from '@/lib/app-meta';
 import '@/styles/tec-design-tokens.css';
 import { ArrivalReport } from '@/components/pioneer/ArrivalReport';
 import { QuestReturn } from '@/components/pioneer/QuestReturn';
@@ -13,6 +14,9 @@ export const metadata: Metadata = {
   title:       'TEC FundX — Collective Investing',
   // C1: no promise of earnings or compliance — legal review has not happened (C-113 §11).
   description: 'TEC FundX — an educational preview of governed collective pools on Pi. Contributions are not open; no return is promised.',
+  // The share card (Open Graph) and the installable manifest read lib/app-meta (E11).
+  openGraph:   { title: APP_META.name, description: APP_META.description, siteName: APP_META.name, type: 'website' },
+  twitter:     { card: 'summary', title: APP_META.name, description: APP_META.description },
 };
 
 export default function RootLayout({
